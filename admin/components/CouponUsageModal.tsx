@@ -57,9 +57,9 @@ export default function CouponUsageModal({ isOpen, onClose, couponId }: CouponUs
                         <div className="space-y-8">
                             {/* Stats Cards */}
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-100 dark:border-blue-800">
-                                    <h3 className="text-blue-800 dark:text-blue-300 text-sm font-medium">Total Orders</h3>
-                                    <p className="text-2xl font-bold text-blue-900 dark:text-blue-100 mt-1">{usageData.totalOrders}</p>
+                                <div className="bg-blue-50 dark:bg-primary-900/20 p-4 rounded-lg border border-primary-100 dark:border-primary-800">
+                                    <h3 className="text-primary-800 dark:text-primary-300 text-sm font-medium">Total Orders</h3>
+                                    <p className="text-2xl font-bold text-primary-900 dark:text-primary-100 mt-1">{usageData.totalOrders}</p>
                                 </div>
                                 <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-100 dark:border-indigo-800">
                                     <h3 className="text-indigo-800 dark:text-indigo-300 text-sm font-medium">Revenue Generated</h3>

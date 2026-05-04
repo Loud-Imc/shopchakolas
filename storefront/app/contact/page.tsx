@@ -1,3 +1,5 @@
+'use client';
+
 export default function ContactUsPage() {
     return (
         <div className="bg-gray-50 min-h-screen">
@@ -24,8 +26,8 @@ export default function ContactUsPage() {
                                     <div>
                                         <h3 className="font-bold text-lg text-gray-900">Office Address</h3>
                                         <p className="text-gray-500 leading-relaxed">
-                                            123, Leewaa Plaza, Main Road,<br />
-                                            Industrial Area, New Delhi - 110001
+                                            Chakola Guru Kalari, PO Box: 100,<br />
+                                            Thrissur, Kerala
                                         </p>
                                     </div>
                                 </div>
@@ -36,8 +38,7 @@ export default function ContactUsPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-lg text-gray-900">Phone & Support</h3>
-                                        <p className="text-gray-500">+91 98765 43210</p>
-                                        <p className="text-gray-500">+91 12345 67890</p>
+                                        <p className="text-gray-500">+91 78290 95229</p>
                                     </div>
                                 </div>
 
@@ -47,8 +48,7 @@ export default function ContactUsPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-lg text-gray-900">Email Support</h3>
-                                        <p className="text-gray-500">support@leewaa.com</p>
-                                        <p className="text-gray-500">info@leewaa.com</p>
+                                        <p className="text-gray-500">info@chakolas.in</p>
                                     </div>
                                 </div>
                             </div>

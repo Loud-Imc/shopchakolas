@@ -119,7 +119,7 @@ export default function CouponsPage() {
                                             </button>
                                             <Link
                                                 href={`/dashboard/coupons/${coupon.id}`}
-                                                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
+                                                className="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 font-medium"
                                             >
                                                 Edit
                                             </Link>

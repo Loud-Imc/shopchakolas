@@ -89,7 +89,7 @@ export default function ReportsPage() {
                     </select>
                     <button
                         onClick={handleDownload}
-                        className="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center gap-2 shadow-md"
+                        className="bg-primary-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-primary-700 transition flex items-center gap-2 shadow-md"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -228,7 +228,7 @@ export default function ReportsPage() {
                     <div className="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-xl border border-gray-100 dark:border-gray-700">
                         <p className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">GST Collected</p>
                         <h2 className="text-3xl font-black text-primary">{formatPrice(salesData.totalTax)}</h2>
-                        <div className="mt-2 text-[10px] text-blue-600 font-bold bg-blue-50 dark:bg-blue-900/20 px-2 py-0.5 rounded-full inline-block uppercase">
+                        <div className="mt-2 text-[10px] text-primary-600 font-bold bg-blue-50 dark:bg-primary-900/20 px-2 py-0.5 rounded-full inline-block uppercase">
                             18% Rate
                         </div>
                     </div>
@@ -340,7 +340,7 @@ export default function ReportsPage() {
                                 <h4 className="text-lg font-bold">Active Conversion</h4>
                             </div>
                             <div className="flex items-center justify-between mt-6">
-                                <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-primary">
+                                <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary">
                                     {((customerData.activeCustomers / customerData.totalCustomers) * 100).toFixed(1)}%
                                 </div>
                                 <div className="text-right">

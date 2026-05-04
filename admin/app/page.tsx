@@ -1,17 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { authAPI } from '@/lib/api';
 
 export default function AdminLoginPage() {
     // Strictly bind pre-filled credentials only to localhost/dev environment
-    const isDev = typeof window !== 'undefined' &&
-        (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+    const [isDev, setIsDev] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    const [email, setEmail] = useState(isDev ? 'admin@leewaa.com' : '');
-    const [password, setPassword] = useState(isDev ? 'Admin@123' : '');
+    useEffect(() => {
+        const dev = typeof window !== 'undefined' &&
+            (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+        setIsDev(dev);
+        if (dev) {
+            setEmail('admin@chakolas.in');
+            setPassword('Admin@123');
+        }
+    }, []);
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -44,7 +52,7 @@ export default function AdminLoginPage() {
     return (
         <div className="min-h-screen bg-[#0f172a] flex items-center justify-center px-4 relative overflow-hidden">
             {/* dynamic background blobs */}
-            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px] animate-pulse"></div>
+            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary-600/20 rounded-full blur-[120px] animate-pulse"></div>
             <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-teal-500/20 rounded-full blur-[120px] animate-pulse delay-700"></div>
             <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-primary/10 rounded-full blur-[100px] animate-bounce"></div>
 
@@ -53,8 +61,8 @@ export default function AdminLoginPage() {
                 <div className="flex flex-col items-center mb-10">
                     <div className="mb-8 relative w-56 h-20 drop-shadow-2xl">
                         <Image
-                            src="/images/Leewa_logo_web.png"
-                            alt="Leewaa Logo"
+                            src="/images/chakolas-logo.png"
+                            alt="Chakolas Logo"
                             fill
                             className="object-contain brightness-0 invert"
                             priority
@@ -62,7 +70,7 @@ export default function AdminLoginPage() {
                     </div>
                     <div className="h-0.5 w-12 bg-primary/50 mb-6 rounded-full"></div>
                     <h1 className="text-3xl font-black text-white tracking-tight">Portal Access</h1>
-                    <p className="text-blue-100/60 font-medium mt-1">Authorized Personnel Only</p>
+                    <p className="text-primary-100/60 font-medium mt-1">Authorized Personnel Only</p>
                 </div>
 
                 {error && (
@@ -74,7 +82,7 @@ export default function AdminLoginPage() {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-3">
-                        <label className="block text-xs font-black text-blue-100/50 uppercase tracking-[0.2em] ml-2">
+                        <label className="block text-xs font-black text-primary-100/50 uppercase tracking-[0.2em] ml-2">
                             Identification
                         </label>
                         <div className="relative group">
@@ -93,7 +101,7 @@ export default function AdminLoginPage() {
                     </div>
 
                     <div className="space-y-3">
-                        <label className="block text-xs font-black text-blue-100/50 uppercase tracking-[0.2em] ml-2">
+                        <label className="block text-xs font-black text-primary-100/50 uppercase tracking-[0.2em] ml-2">
                             Security Key
                         </label>
                         <div className="relative group">
@@ -147,8 +155,8 @@ export default function AdminLoginPage() {
                             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                             <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.3em]">Developer Mode Active</p>
                         </div>
-                        <div className="text-center px-5 py-3 bg-white/5 rounded-2xl border border-white/10 text-xs font-bold text-blue-200/50 backdrop-blur-sm">
-                            admin@leewaa.com / Admin@123
+                        <div className="text-center px-5 py-3 bg-white/5 rounded-2xl border border-white/10 text-xs font-bold text-primary-200/50 backdrop-blur-sm">
+                            admin@chakolas.in / Admin@123
                         </div>
                     </div>
                 )}

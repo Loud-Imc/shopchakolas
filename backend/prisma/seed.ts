@@ -9,18 +9,18 @@ async function main() {
     // Create admin user
     const adminPassword = await bcrypt.hash('Admin@123', 10);
     const admin = await prisma.user.upsert({
-        where: { email: 'admin@leewaa.com' },
+        where: { email: 'admin@chakolas.in' },
         update: {
             role: 'SUPER_ADMIN',
         },
         create: {
-            email: 'admin@leewaa.com',
+            email: 'admin@chakolas.in',
             password: adminPassword,
             firstName: 'Admin',
             lastName: 'User',
-            phone: '+911234567890',
+            phone: '+917829095229',
             role: 'SUPER_ADMIN',
-            referralCode: 'ADMIN001',
+            referralCode: 'CHAKOLA001',
         },
     });
     console.log('✓ Created super admin user:', admin.email);
@@ -28,10 +28,10 @@ async function main() {
     // Create customer user
     const customerPassword = await bcrypt.hash('Customer@123', 10);
     const customer = await prisma.user.upsert({
-        where: { email: 'customer@leewaa.com' },
+        where: { email: 'customer@chakolas.in' },
         update: {},
         create: {
-            email: 'customer@leewaa.com',
+            email: 'customer@chakolas.in',
             password: customerPassword,
             firstName: 'John',
             lastName: 'Doe',
@@ -60,85 +60,85 @@ async function main() {
     console.log('✓ Created referral config');
 
     // Create categories
-    const domesticRO = await prisma.category.upsert({
-        where: { slug: 'domestic-ro' },
+    const faceCare = await prisma.category.upsert({
+        where: { slug: 'face-care' },
         update: {},
         create: {
-            name: 'Domestic RO',
-            slug: 'domestic-ro',
-            description: 'Advanced RO water purifiers for home use',
-            image: '/uploads/cat-domestic-ro.png',
+            name: 'Face Care',
+            slug: 'face-care',
+            description: 'Traditional Ayurvedic treatments for radiant face skin',
+            image: '/uploads/cat-face-care.png',
             isActive: true,
             position: 1,
         },
     });
-    console.log('✓ Created category: Domestic RO');
+    console.log('✓ Created category: Face Care');
 
-    const alkalineFilters = await prisma.category.upsert({
-        where: { slug: 'alkaline-filters' },
+    const bodyCare = await prisma.category.upsert({
+        where: { slug: 'body-care' },
         update: {},
         create: {
-            name: 'Alkaline Filters',
-            slug: 'alkaline-filters',
-            description: 'Water filters that provide healthy alkaline water',
-            image: '/uploads/cat-alkaline.png',
+            name: 'Body Care',
+            slug: 'body-care',
+            description: 'Natural Ayurvedic oils and creams for the body',
+            image: '/uploads/cat-body-care.png',
             isActive: true,
             position: 2,
         },
     });
-    console.log('✓ Created category: Alkaline Filters');
+    console.log('✓ Created category: Body Care');
 
-    const spareParts = await prisma.category.upsert({
-        where: { slug: 'spare-parts' },
+    const hairCare = await prisma.category.upsert({
+        where: { slug: 'hair-care' },
         update: {},
         create: {
-            name: 'Spare Parts',
-            slug: 'spare-parts',
-            description: 'High quality spare parts for all water filters',
-            image: '/uploads/cat-spare-parts.png',
+            name: 'Hair Care',
+            slug: 'hair-care',
+            description: 'Herbal hair oils and treatments since 1922',
+            image: '/uploads/cat-hair-care.png',
             isActive: true,
             position: 3,
         },
     });
-    console.log('✓ Created category: Spare Parts');
+    console.log('✓ Created category: Hair Care');
 
     // Create sample products
     const product1 = await prisma.product.upsert({
-        where: { slug: 'reverse-osmosis-water-purifier' },
+        where: { slug: 'ayurvedic-glow-serum' },
         update: {},
         create: {
-            categoryId: domesticRO.id,
-            name: 'Reverse Osmosis Water Purifier',
-            slug: 'reverse-osmosis-water-purifier',
-            description: 'Advanced RO water purifier with 7-stage filtration',
-            price: 12999,
-            discount: 15,
-            stock: 50,
-            images: ['/uploads/cat-domestic-ro.png'],
+            categoryId: faceCare.id,
+            name: 'Ayurvedic Glow Serum',
+            slug: 'ayurvedic-glow-serum',
+            description: 'Authentic Ayurvedic face serum for natural radiance and glow',
+            price: 1499,
+            discount: 10,
+            stock: 100,
+            images: ['/uploads/glow-serum.png'],
             isActive: true,
             isFeatured: true,
-            metaTitle: 'Best RO Water Purifier - Leewaa',
-            metaDescription: 'Buy advanced reverse osmosis water purifier with 7-stage filtration',
+            metaTitle: 'Ayurvedic Glow Serum - Chakolas',
+            metaDescription: 'Authentic Ayurvedic face serum for natural radiance and glow',
         },
     });
     console.log('✓ Created product:', product1.name);
 
     const product2 = await prisma.product.upsert({
-        where: { slug: 'uv-smart-water-filter' },
+        where: { slug: 'traditional-hair-oil' },
         update: {},
         create: {
-            categoryId: domesticRO.id,
-            name: 'UV Smart Water Filter',
-            slug: 'uv-smart-water-filter',
-            description: 'UV technology water filter for pure drinking water',
-            price: 8999,
-            discount: 10,
-            stock: 75,
-            images: ['/uploads/cat-alkaline.png'],
+            categoryId: hairCare.id,
+            name: 'Traditional Hair Oil',
+            slug: 'traditional-hair-oil',
+            description: 'Our century-old recipe for strong and healthy hair',
+            price: 899,
+            discount: 5,
+            stock: 150,
+            images: ['/uploads/hair-oil.png'],
             isActive: true,
             isFeatured: true,
-            metaTitle: 'UV Water Filter - Leewaa',
-            metaDescription: 'Advanced UV water filtration system',
+            metaTitle: 'Traditional Hair Oil - Chakolas',
+            metaDescription: 'Our century-old recipe for strong and healthy hair',
         },
     });
     console.log('✓ Created product:', product2.name);
@@ -148,8 +148,8 @@ async function main() {
 
     const banner1 = await prisma.banner.create({
         data: {
-            title: 'Pure Water for Your Family',
-            description: 'Discover our advanced RO & UV purification systems',
+            title: 'Authentic Ayurveda Since 1922',
+            description: 'Discover the purity of traditional skincare recipes',
             image: '/uploads/hero-banner.png',
             link: '/products',
             position: 1,
@@ -160,10 +160,10 @@ async function main() {
 
     const banner2 = await prisma.banner.create({
         data: {
-            title: 'UV Smart Purification',
-            description: 'Smart tech for guaranteed water safety and mineral retention',
-            image: '/uploads/uv-smart-banner.png',
-            link: '/products',
+            title: 'Face Care Collection',
+            description: 'Restore your natural glow with our Ayurvedic serums',
+            image: '/uploads/face-banner.png',
+            link: '/products?category=face-care',
             position: 2,
             isActive: true,
         },
@@ -172,10 +172,10 @@ async function main() {
 
     const banner3 = await prisma.banner.create({
         data: {
-            title: 'Commercial Solutions',
-            description: 'Heavy duty purifiers for offices and industries',
-            image: '/uploads/commercial-banner.png',
-            link: '/products',
+            title: 'Centuries of Wisdom',
+            description: 'Trusted by generations for holistic skin wellness',
+            image: '/uploads/heritage-banner.png',
+            link: '/about',
             position: 3,
             isActive: true,
         },
@@ -202,8 +202,8 @@ async function main() {
 
     console.log('\n✅ Database seeded successfully!');
     console.log('\nDefault credentials:');
-    console.log('Admin: admin@leewaa.com / Admin@123');
-    console.log('Customer: customer@leewaa.com / Customer@123');
+    console.log('Admin: admin@chakolas.in / Admin@123');
+    console.log('Customer: customer@chakolas.in / Customer@123');
 }
 
 main()

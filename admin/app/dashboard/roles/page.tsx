@@ -107,7 +107,7 @@ export default function RolesPage() {
                         <div className="flex justify-between items-start mb-4">
                             <h3 className="text-xl font-bold">{role.name}</h3>
                             <div className="flex gap-2">
-                                <button onClick={() => handleEdit(role)} className="text-blue-500 hover:text-blue-600">Edit</button>
+                                <button onClick={() => handleEdit(role)} className="text-primary-500 hover:text-primary-600">Edit</button>
                                 <button onClick={() => handleDelete(role.id)} className="text-red-500 hover:text-red-600">Delete</button>
                             </div>
                         </div>

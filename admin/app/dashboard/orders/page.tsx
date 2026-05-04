@@ -261,12 +261,12 @@ export default function OrdersPage() {
 
                     {/* Bulk Action Bar */}
                     {selectedOrders.length > 0 && (
-                        <div className="mb-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 flex items-center justify-between">
+                        <div className="mb-4 bg-blue-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-lg p-4 flex items-center justify-between">
                             <div className="flex items-center gap-4">
-                                <span className="font-semibold text-blue-900 dark:text-blue-300">{selectedOrders.length} order(s) selected</span>
+                                <span className="font-semibold text-primary-900 dark:text-primary-300">{selectedOrders.length} order(s) selected</span>
                                 <button
                                     onClick={() => setSelectedOrders([])}
-                                    className="text-sm text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-200 underline"
+                                    className="text-sm text-primary-700 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-200 underline"
                                 >
                                     Clear selection
                                 </button>
@@ -274,7 +274,7 @@ export default function OrdersPage() {
                             <button
                                 onClick={handleBulkPrint}
                                 disabled={isPrinting}
-                                className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center gap-2 disabled:opacity-50"
+                                className="bg-primary-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-700 transition flex items-center gap-2 disabled:opacity-50"
                             >
                                 {isPrinting ? (
                                     <>
@@ -383,7 +383,7 @@ export default function OrdersPage() {
                                         <td className="px-6 py-4">
                                             <Link
                                                 href={`/dashboard/orders/${order.id}`}
-                                                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium"
+                                                className="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 text-sm font-medium"
                                             >
                                                 View Details
                                             </Link>

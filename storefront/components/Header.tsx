@@ -46,10 +46,10 @@ export default function Header() {
                         <Link href="/" className="hover:opacity-90 transition flex-shrink-0 py-1">
                             <div className="relative h-10 w-32 lg:h-12 lg:w-40">
                                 <Image
-                                    src="/images/Leewa_logo_web.png"
-                                    alt="Leewaa Logo"
+                                    src="/images/chakolas-logo.png"
+                                    alt="Chakolas Logo"
                                     fill
-                                    className="object-contain brightness-0 invert"
+                                    className="object-contain"
                                     priority
                                 />
                             </div>

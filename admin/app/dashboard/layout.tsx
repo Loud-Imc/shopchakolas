@@ -76,8 +76,8 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
             {/* Sidebar */}
             <aside className="w-64 bg-primary dark:bg-gray-800 text-white flex flex-col print-hide shadow-lg">
                 <div className="p-6 border-b border-primary-700 dark:border-gray-700 flex flex-col items-center">
-                    <img src="/images/Leewa_logo_web.png" alt="Leewaa Logo" className="h-12 w-auto mb-2 brightness-0 invert" />
-                    <p className="text-primary-100 dark:text-gray-400 text-[10px] uppercase tracking-widest font-bold">Management Panel</p>
+                    <img src="/images/chakolas-logo.png" alt="Chakolas Logo" className="h-6 w-auto mb-2" />
+                    <p className="text-primary-100 dark:text-gray-400 text-[10px] uppercase tracking-widest font-bold">Chakolas Management</p>
                 </div>
 
                 <nav className="flex-1 px-4 py-4 space-y-2 overflow-y-auto">

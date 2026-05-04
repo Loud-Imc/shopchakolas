@@ -10,17 +10,22 @@ const config: Config = {
         extend: {
             colors: {
                 primary: {
-                    DEFAULT: '#157fb8',
-                    50: '#eef6fb',
-                    100: '#dcecf7',
-                    200: '#bad9ef',
-                    300: '#98c6e7',
-                    400: '#75b3df',
-                    500: '#157fb8',
-                    600: '#116693',
-                    700: '#0d4c6e',
-                    800: '#083349',
-                    900: '#041925',
+                    DEFAULT: '#2d5143', // Dark Olive Green
+                    50: '#f4f7f6',
+                    100: '#e9efed',
+                    200: '#c8d6d2',
+                    300: '#a7bdb6',
+                    400: '#668b7f',
+                    500: '#2d5143',
+                    600: '#29493c',
+                    700: '#223d32',
+                    800: '#1b3128',
+                    900: '#162821',
+                },
+                accent: {
+                    DEFAULT: '#a7c655', // Lighter Green/Yellow
+                    light: '#bcd47d',
+                    dark: '#8eb03a',
                 },
             },
             fontFamily: {

@@ -140,7 +140,7 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
                                 </div>
                                 <button
                                     onClick={handlePrint}
-                                    className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium underline"
+                                    className="text-sm text-primary dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium underline"
                                 >
                                     Reprint
                                 </button>
@@ -169,7 +169,7 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
                             </button>
                             <button
                                 onClick={handleDownload}
-                                className="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center gap-2"
+                                className="bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primary-700 transition flex items-center gap-2"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />

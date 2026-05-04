@@ -68,7 +68,7 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
                 <div className="bg-primary p-6 sm:p-8 text-white flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div className="space-y-1">
-                        <p className="text-blue-100 text-[10px] uppercase font-black tracking-[0.2em] opacity-80">Order Identification</p>
+                        <p className="text-primary-100 text-[10px] uppercase font-black tracking-[0.2em] opacity-80">Order Identification</p>
                         <h2 className="text-2xl sm:text-3xl font-black tracking-tight truncate">#{order.orderNumber}</h2>
                         <div className="flex items-center gap-2 pt-2">
                             <span className="bg-white/20 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm border border-white/10">
@@ -82,7 +82,7 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
 
                     <button
                         onClick={handleDownload}
-                        className="group flex items-center justify-center gap-3 bg-white text-primary hover:bg-blue-50 px-8 py-4 rounded-2xl font-black text-sm transition-all duration-300 shadow-2xl shadow-blue-900/20 hover:scale-[1.02] active:scale-[0.98] w-full md:w-auto"
+                        className="group flex items-center justify-center gap-3 bg-white text-primary hover:bg-primary-50 px-8 py-4 rounded-2xl font-black text-sm transition-all duration-300 shadow-2xl shadow-primary-900/20 hover:scale-[1.02] active:scale-[0.98] w-full md:w-auto"
                     >
                         <svg className="w-5 h-5 group-hover:bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

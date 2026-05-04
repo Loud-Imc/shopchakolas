@@ -11,8 +11,8 @@ import ProgressBar from "@/components/ProgressBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Leewaa - Water Filter E-commerce",
-    description: "Your trusted water filter store",
+    title: "Chakolas - Ayurvedic Skincare Since 1922",
+    description: "Experience the purity of Ayurveda with Chakolas skincare products.",
 };
 
 // Force dynamic rendering for all pages to avoid static generation Suspense issues

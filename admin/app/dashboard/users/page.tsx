@@ -186,7 +186,7 @@ export default function UsersPage() {
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="flex flex-col gap-1">
-                                            <span className={`px-3 py-1 rounded-full text-xs font-bold inline-block w-fit ${user.role === 'ADMIN' || user.role === 'SUPER_ADMIN' ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400' : 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
+                                            <span className={`px-3 py-1 rounded-full text-xs font-bold inline-block w-fit ${user.role === 'ADMIN' || user.role === 'SUPER_ADMIN' ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400' : 'bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400'
                                                 }`}>
                                                 {user.role}
                                             </span>

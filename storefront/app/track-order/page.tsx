@@ -32,7 +32,7 @@ export default function TrackOrderPage() {
 
     return (
         <div className="min-h-[70vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50/50">
-            <div className="max-w-md w-full space-y-8 bg-white p-8 sm:p-12 rounded-[2.5rem] shadow-2xl shadow-blue-900/5 border border-gray-100 animate-in fade-in zoom-in duration-500">
+            <div className="max-w-md w-full space-y-8 bg-white p-8 sm:p-12 rounded-[2.5rem] shadow-2xl shadow-primary-900/5 border border-gray-100 animate-in fade-in zoom-in duration-500">
                 <div className="text-center">
                     <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 group transition-transform hover:scale-110">
                         <svg className="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">

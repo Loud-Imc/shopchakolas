@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-    title: "Leewaa Admin Panel",
-    description: "Admin management panel for Leewaa E-commerce",
+    title: "Chakolas Admin Panel",
+    description: "Admin management panel for Chakolas Ayurvedic Skincare",
 };
 
 export default function RootLayout({

@@ -9,6 +9,7 @@ import { formatPrice, calculateDiscountedPrice, getImageUrl } from '@/lib/utils'
 import { RootState, AppDispatch } from '@/lib/store';
 import { addToWishlist, removeFromWishlist } from '@/lib/store/wishlistSlice';
 import { addToCart } from '@/lib/store/cartSlice';
+import { cartAPI } from '@/lib/api';
 
 interface Product {
     id: string;
@@ -51,13 +52,15 @@ export default function ProductCard({ product }: { product: Product }) {
         }
     };
 
-    const handleAddToCart = (e: React.MouseEvent) => {
+    const handleAddToCart = async (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
 
         if (product.stock === 0) return;
 
         setAdding(true);
+
+        // Dispatch to Redux immediately for instant UI update
         dispatch(addToCart({
             id: product.id,
             productId: product.id,
@@ -69,7 +72,20 @@ export default function ProductCard({ product }: { product: Product }) {
             stock: product.stock
         }));
 
-        setTimeout(() => setAdding(false), 800);
+        // Also persist to backend if user is authenticated
+        const token = localStorage.getItem('accessToken');
+        if (token) {
+            try {
+                await cartAPI.add({ productId: product.id, quantity: 1 });
+            } catch (err) {
+                console.error('Failed to sync cart with backend', err);
+            }
+        }
+
+        setTimeout(() => {
+            setAdding(false);
+            router.push('/cart');
+        }, 800);
     };
 
     return (
@@ -108,7 +124,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
                     {/* Sophisticated Hover Overlay */}
                     <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"></div>
-                    
+
                     {/* Floating "View Details" on hover */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/card:opacity-100 translate-y-4 group-hover/card:translate-y-0 transition-all duration-500 z-10">
                         <span className="bg-primary text-white px-10 py-4 rounded-full text-sm font-black tracking-widest uppercase shadow-2xl">
@@ -157,11 +173,16 @@ export default function ProductCard({ product }: { product: Product }) {
 
                 {/* Interaction Footer - Grand & Elegant */}
                 <div className="mt-8 flex items-center justify-between border-t border-gray-50/50 pt-8 px-4">
-                   <div className="flex flex-col items-start">
-                        <span className="text-[10px] text-gray-400 font-black uppercase tracking-[0.2em] mb-1">Legacy Collection</span>
-                        <span className="text-[12px] text-primary-800 font-bold">Ayurvedic Certification</span>
-                   </div>
-                   <button
+                    <button
+                        onClick={(e) => { e.preventDefault(); e.stopPropagation(); router.push(`/products/${product.slug}`); }}
+                        className="group/more flex items-center gap-2 text-primary font-black text-[12px] uppercase tracking-[0.2em] hover:gap-3 transition-all duration-300 border border-primary/20 px-5 py-3 rounded-xl hover:bg-primary/5"
+                    >
+                        More Details
+                        <svg className="w-3.5 h-3.5 group-hover/more:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </button>
+                    <button
                         onClick={handleAddToCart}
                         disabled={product.stock === 0 || adding}
                         className={`h-14 px-10 flex items-center justify-center rounded-2xl transition-all duration-700 font-black text-[13px] uppercase tracking-[0.2em] ${adding
@@ -169,7 +190,7 @@ export default function ProductCard({ product }: { product: Product }) {
                             : 'bg-primary text-white hover:bg-primary-dark shadow-[0_15px_30px_rgba(45,81,67,0.3)] hover:shadow-[0_20px_40px_rgba(45,81,67,0.5)] active:scale-95 disabled:bg-gray-50 disabled:text-gray-300 disabled:shadow-none'
                             }`}
                     >
-                        {adding ? 'Secured' : 'Acquire'}
+                        {adding ? 'Secured' : 'Add To Cart'}
                     </button>
                 </div>
             </Link>

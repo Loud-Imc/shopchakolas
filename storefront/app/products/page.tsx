@@ -38,19 +38,26 @@ export default async function ProductsPage({
     const { data: products, meta } = result;
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <div className="mb-8">
-                <h1 className="text-4xl font-bold text-gray-800 mb-2">Products</h1>
-                <p className="text-gray-600">
-                    Showing {products.length} of {meta.total} products
+        <div className="container mx-auto px-4 pt-36 pb-20 bg-[#fcfdfc]">
+            <div className="max-w-6xl mx-auto mb-16 text-center">
+                <span className="text-primary font-black tracking-[0.3em] uppercase text-xs mb-4 block">
+                    Heritage Apothecary
+                </span>
+                <h1 className="text-6xl font-black text-gray-900 mb-6 tracking-tight">Our Collection</h1>
+                <p className="text-gray-500 text-lg font-medium italic">
+                    Traditional Ayurvedic formulas, handcrafted for modern wellness.
                 </p>
             </div>
 
-            {/* Products Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {products.map((product: any) => (
-                    <ProductCard key={product.id} product={product} />
-                ))}
+            {/* Products Grid - Centered & Premium */}
+            <div className="max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+                    {products.map((product: any) => (
+                        <div key={product.id} className="transform hover:-translate-y-2 transition-transform duration-500">
+                            <ProductCard product={product} />
+                        </div>
+                    ))}
+                </div>
             </div>
 
             {products.length === 0 && (

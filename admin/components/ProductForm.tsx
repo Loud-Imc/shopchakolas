@@ -26,6 +26,8 @@ export default function ProductForm({ id, initialData }: ProductFormProps) {
         isActive: true,
         isFeatured: false,
         position: '0',
+        offerType: '',
+        offerLabel: '',
     });
     const [displayImages, setDisplayImages] = useState<{ id: string; type: 'existing' | 'local'; url: string; file?: File }[]>([]);
     const [compressing, setCompressing] = useState(false);
@@ -44,6 +46,8 @@ export default function ProductForm({ id, initialData }: ProductFormProps) {
                 isActive: initialData.isActive ?? true,
                 isFeatured: initialData.isFeatured ?? false,
                 position: initialData.position?.toString() || '0',
+                offerType: initialData.offerType || '',
+                offerLabel: initialData.offerLabel || '',
             });
 
             if (initialData.images) {
@@ -142,6 +146,8 @@ export default function ProductForm({ id, initialData }: ProductFormProps) {
         payload.append('isActive', String(formData.isActive));
         payload.append('isFeatured', String(formData.isFeatured));
         payload.append('position', formData.position);
+        payload.append('offerType', formData.offerType);
+        payload.append('offerLabel', formData.offerLabel);
 
         // Create the image order and separate files
         const imageOrder: string[] = [];
@@ -185,7 +191,7 @@ export default function ProductForm({ id, initialData }: ProductFormProps) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-8 max-w-4xl">
+        <form onSubmit={handleSubmit} className="space-y-8 max-w-4xl pb-20">
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 grid grid-cols-1 md:grid-cols-2 gap-6 border border-transparent dark:border-gray-700">
                 <div className="md:col-span-2">
                     <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
@@ -240,6 +246,39 @@ export default function ProductForm({ id, initialData }: ProductFormProps) {
                         className="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200 rounded-lg focus:ring-2 focus:ring-primary outline-none"
                         placeholder="0"
                     />
+                </div>
+
+                {/* Offer Section */}
+                <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-600">
+                    <div>
+                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            Offer Type
+                        </label>
+                        <select
+                            value={formData.offerType}
+                            onChange={(e) => setFormData({ ...formData, offerType: e.target.value })}
+                            className="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200 rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                        >
+                            <option value="">None</option>
+                            <option value="1+1">Buy 1 Get 1 (1+1)</option>
+                            <option value="1+2">Buy 1 Get 2 (1+2)</option>
+                            <option value="custom">Custom Offer</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            Offer Label (Display Text)
+                        </label>
+                        <input
+                            type="text"
+                            value={formData.offerLabel}
+                            onChange={(e) => setFormData({ ...formData, offerLabel: e.target.value })}
+                            className="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200 rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                            placeholder="e.g. Buy 1 Get 1 Free"
+                        />
+                        <p className="mt-1 text-[10px] text-gray-500">This will be shown on the product card badge.</p>
+                    </div>
                 </div>
 
                 <div>

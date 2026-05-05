@@ -45,6 +45,14 @@ export class CreateProductDto {
 
     @IsOptional()
     @IsString()
+    offerType?: string;
+
+    @IsOptional()
+    @IsString()
+    offerLabel?: string;
+
+    @IsOptional()
+    @IsString()
     metaTitle?: string;
 
     @IsOptional()

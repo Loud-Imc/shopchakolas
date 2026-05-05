@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import Link from 'next/link';
 import { authAPI } from '@/lib/api';
 import { setCredentials } from '@/lib/store/authSlice';
@@ -35,9 +36,18 @@ export default function LoginPage() {
 
     return (
         <div className="container mx-auto px-4 py-20">
-            <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8">
-                <h1 className="text-3xl font-bold text-gray-800 mb-2 text-center">Welcome Back</h1>
-                <p className="text-gray-600 text-center mb-8">Login to your account</p>
+            <div className="max-w-md mx-auto bg-white rounded-[2.5rem] shadow-2xl p-10 border border-gray-50">
+                <div className="flex justify-center mb-8">
+                    <Image
+                        src="/images/chakolas-logo.png"
+                        alt="Chakolas Logo"
+                        width={300}
+                        height={80}
+                        className="brightness-0"
+                    />
+                </div>
+                <h1 className="text-3xl font-black text-gray-900 mb-2 text-center tracking-tight">Welcome Back</h1>
+                <p className="text-gray-500 text-center mb-10 font-medium">Login to your boutique account</p>
 
                 {redirect.includes('/checkout') && !error && (
                     <div className="bg-primary-50 border border-primary-200 text-primary-700 px-4 py-3 rounded-lg mb-6 flex items-center gap-3">

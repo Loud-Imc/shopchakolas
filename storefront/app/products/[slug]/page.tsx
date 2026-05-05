@@ -112,8 +112,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
         );
     }
 
-
-
     const discountedPrice = calculateDiscountedPrice(product.price, product.discount);
 
     const handleAddToCart = async () => {
@@ -207,6 +205,12 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
                                 {product.discount}% OFF
                             </div>
                         )}
+
+                        {product.offerLabel && (
+                            <div className="absolute top-20 right-4 z-20 bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-2.5 rounded-full font-black text-sm uppercase tracking-widest shadow-xl animate-pulse-subtle">
+                                {product.offerLabel}
+                            </div>
+                        )}
                     </div>
 
                     {/* Thumbnails */}
@@ -246,8 +250,11 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
                                 {formatPrice(discountedPrice)}
                             </span>
                             {product.discount > 0 && (
-                                <span className="text-2xl text-gray-400 line-through">
+                                <span className="relative text-2xl text-gray-500 font-medium px-1">
                                     {formatPrice(product.price)}
+                                    <span className="absolute inset-0 flex items-center justify-center">
+                                        <span className="w-full h-[2px] bg-red-700 -rotate-3 transform shadow-sm opacity-80"></span>
+                                    </span>
                                 </span>
                             )}
                         </div>

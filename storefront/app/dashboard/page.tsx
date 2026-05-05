@@ -82,7 +82,7 @@ export default function DashboardPage() {
     const displayUser = realUser || user;
 
     return (
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 pt-40 pb-20">
             <h1 className="text-4xl font-black text-gray-900 mb-8 print:hidden">My Account</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">

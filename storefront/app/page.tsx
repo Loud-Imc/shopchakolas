@@ -35,30 +35,49 @@ export default async function Home() {
             <HeroSlider banners={banners} />
 
             {/* Featured Products */}
-            <section className="py-16">
+            <section className="py-2 bg-[#fcfdfc]">
                 <div className="container mx-auto px-4">
-                    <div className="flex items-center justify-between mb-8">
-                        <h2 className="text-3xl font-bold text-gray-800">Featured Products</h2>
-                        <Link
-                            href="/products"
-                            className="text-primary font-semibold hover:text-primary-700 transition"
-                        >
-                            View All →
-                        </Link>
-                    </div>
+                    <div className="max-w-6xl mx-auto">
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {products.map((product: any) => (
-                            <ProductCard key={product.id} product={product} />
-                        ))}
-                    </div>
-
-                    {products.length === 0 && (
-                        <div className="text-center py-12 text-gray-500">
-                            <p className="text-lg">No products available at the moment.</p>
-                            <p className="text-sm mt-2">Please check back later!</p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+                            {products.slice(0, 2).map((product: any) => (
+                                <div key={product.id} className="transform hover:-translate-y-4 transition-all duration-700">
+                                    <ProductCard product={product} />
+                                </div>
+                            ))}
                         </div>
-                    )}
+
+                        <div className="flex flex-col items-center text-center mt-20 mb-16">
+                            <span className="text-primary font-black tracking-[0.3em] uppercase text-xs mb-4">
+                                Curated Collection
+                            </span>
+                            <h2 className="text-5xl font-black text-gray-900 mb-6 tracking-tight">
+                                Our Signature Products
+                            </h2>
+                            <div className="h-1.5 w-24 bg-primary/20 rounded-full overflow-hidden">
+                                <div className="h-full w-1/2 bg-primary rounded-full"></div>
+                            </div>
+                        </div>
+
+                        {products.length === 0 && (
+                            <div className="text-center py-12 text-gray-500">
+                                <p className="text-lg font-medium">Coming Soon...</p>
+                                <p className="text-sm mt-2">We are preparing our signature Ayurvedic formulas.</p>
+                            </div>
+                        )}
+
+                        {products.length > 0 && (
+                            <div className="mt-16 text-center">
+                                <Link
+                                    href="/products"
+                                    className="inline-flex items-center gap-3 text-primary font-black uppercase tracking-widest text-xs hover:gap-5 transition-all duration-300 group"
+                                >
+                                    View Full Apothecary
+                                    <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>
+                                </Link>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </section>
 

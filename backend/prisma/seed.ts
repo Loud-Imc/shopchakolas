@@ -140,6 +140,8 @@ async function main() {
             isFeatured: true,
             metaTitle: 'Traditional Hair Oil - Chakolas',
             metaDescription: 'Our century-old recipe for strong and healthy hair',
+            offerType: '1+1',
+            offerLabel: 'Buy 1 Get 1 Free',
         },
     });
     console.log('✓ Created product:', product2.name);

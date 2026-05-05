@@ -59,12 +59,12 @@ export default function AdminLoginPage() {
             {/* main card with glassmorphism */}
             <div className="max-w-md w-full bg-white/10 backdrop-blur-2xl rounded-[40px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] p-10 relative z-10 border border-white/20">
                 <div className="flex flex-col items-center mb-10">
-                    <div className="mb-8 relative w-56 h-20 drop-shadow-2xl">
+                    <div className="mb-10 relative w-80 h-32 drop-shadow-2xl">
                         <Image
                             src="/images/chakolas-logo.png"
                             alt="Chakolas Logo"
                             fill
-                            className="object-contain brightness-0 invert"
+                            className="object-contain"
                             priority
                         />
                     </div>

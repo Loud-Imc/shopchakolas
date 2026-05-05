@@ -158,6 +158,10 @@ model Product {
   isFeatured  Boolean  @default(false)
   position    Int      @default(0)
   
+  // Offers
+  offerType       String?  // e.g., "1+1", "1+2"
+  offerLabel      String?  // e.g., "Buy 1 Get 1 Free"
+  
   // SEO
   metaTitle       String?
   metaDescription String?

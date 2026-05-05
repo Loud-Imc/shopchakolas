@@ -56,11 +56,12 @@ export class ProductsService {
             });
         }
 
-        const { imageOrder, ...productData } = createProductDto;
+        const { imageOrder, categoryId, ...productData } = createProductDto;
 
         const product = await this.prisma.product.create({
             data: {
                 ...productData,
+                categoryId,
                 slug,
                 images: finalImages,
             },
@@ -221,12 +222,13 @@ export class ProductsService {
             });
         }
 
-        const { imageOrder, ...productData } = updateProductDto;
+        const { imageOrder, categoryId, ...productData } = updateProductDto;
 
         const product = await this.prisma.product.update({
             where: { id },
             data: {
                 ...productData,
+                ...(categoryId && { category: { connect: { id: categoryId } } }),
                 slug,
                 images: finalImages,
             },

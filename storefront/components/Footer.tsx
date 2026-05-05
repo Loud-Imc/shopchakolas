@@ -18,13 +18,12 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                     {/* Logo & Description */}
                     <div className="space-y-6">
-                        <Link href="/" className="inline-block">
+                        <Link href="/" className="inline-block hover:opacity-80 transition">
                             <Image
                                 src="/images/chakolas-logo.png"
                                 alt="Chakolas Logo"
-                                width={160}
-                                height={45}
-                                className=""
+                                width={300}
+                                height={80}
                             />
                         </Link>
                         <p className="text-white text-sm leading-relaxed max-w-xs">

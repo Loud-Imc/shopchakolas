@@ -203,7 +203,7 @@ export default function ProductForm({ id, initialData }: ProductFormProps) {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200 rounded-lg focus:ring-2 focus:ring-primary outline-none"
-                        placeholder="e.g. RO Water Purifier"
+                        placeholder="e.g. Hair Oil"
                     />
                 </div>
 

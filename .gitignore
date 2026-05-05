@@ -65,13 +65,11 @@ prisma/migrations/*/migration.sql
 
 # Storefront Assets
 storefront/public/images/*
-!storefront/public/images/Leewa_logo_web.png
-!storefront/public/images/Leewa_logo_mobile.png
+!storefront/public/images/chakolas-logo.png
 
 # Admin Assets
 admin/public/images/*
-!admin/public/images/Leewa_logo_web.png
-!admin/public/images/Leewa_logo_mobile.png
+!admin/public/images/chakolas-logo.png
 
 # PM2
 .pm2/

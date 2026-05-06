@@ -66,6 +66,7 @@ prisma/migrations/*/migration.sql
 # Storefront Assets
 storefront/public/images/*
 !storefront/public/images/chakolas-logo.png
+!storefront/public/images/chakolas-logo-dark.png
 
 # Admin Assets
 admin/public/images/*

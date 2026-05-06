@@ -146,7 +146,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
     };
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 pt-32 pb-20 ">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {/* Images */}
                 <div className="space-y-4">
@@ -200,11 +200,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
                             </svg>
                         </button>
 
-                        {product.discount > 0 && (
-                            <div className="absolute top-4 right-4 z-20 bg-red-500 text-white px-4 py-2 rounded-full font-bold shadow-lg">
-                                {product.discount}% OFF
-                            </div>
-                        )}
+
 
                         {product.offerLabel && (
                             <div className="absolute top-20 right-4 z-20 bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-2.5 rounded-full font-black text-sm uppercase tracking-widest shadow-xl animate-pulse-subtle">
@@ -245,17 +241,19 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
                     <h1 className="text-4xl font-bold text-gray-800 mb-4">{product.name}</h1>
 
                     <div className="flex flex-col mb-6">
-                        <div className="flex items-center gap-3">
-                            <span className="text-4xl font-bold text-primary">
+                        <div className="flex items-center gap-4 flex-wrap">
+                            <span className="text-4xl font-black text-primary">
                                 {formatPrice(discountedPrice)}
                             </span>
                             {product.discount > 0 && (
-                                <span className="relative text-2xl text-gray-500 font-medium px-1">
-                                    {formatPrice(product.price)}
-                                    <span className="absolute inset-0 flex items-center justify-center">
-                                        <span className="w-full h-[2px] bg-red-700 -rotate-3 transform shadow-sm opacity-80"></span>
+                                <div className="flex items-center gap-3">
+                                    <span className="text-xl text-gray-400 line-through decoration-red-500/50 decoration-2">
+                                        {formatPrice(product.price)}
                                     </span>
-                                </span>
+                                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider">
+                                        {Math.round(product.discount)}% OFF
+                                    </span>
+                                </div>
                             )}
                         </div>
                         <span className="text-sm text-gray-500 font-medium mt-1">Inclusive of GST</span>

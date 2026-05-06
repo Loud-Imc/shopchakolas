@@ -44,13 +44,13 @@ export class MailService {
 
     const html = `
       <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 650px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; color: #333;">
-        <div style="text-align: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 2px solid #157fb8;">
-          <img src="cid:leewaa-logo" alt="Leewaa" style="height: 50px; width: auto;" />
-          <p style="color: #666; font-style: italic; margin: 10px 0 0 0;">Quality is our priority</p>
+        <div style="text-align: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 2px solid #2D5143;">
+          <img src="cid:chakolas-logo" alt="Chakolas" style="height: 50px; width: auto;" />
+          <p style="color: #666; font-style: italic; margin: 10px 0 0 0;">Experience the purity of Ayurveda</p>
         </div>
         
-        <div style="background-color: #f0f9ff; padding: 25px; border-radius: 8px; margin-bottom: 25px; border-left: 5px solid #157fb8;">
-          <h2 style="margin-top: 0; color: #157fb8; font-size: 22px;">Order Confirmed!</h2>
+        <div style="background-color: #f0f9ff; padding: 25px; border-radius: 8px; margin-bottom: 25px; border-left: 5px solid #2D5143;">
+          <h2 style="margin-top: 0; color: #2D5143; font-size: 22px;">Order Confirmed!</h2>
           <p style="font-size: 16px; margin-bottom: 10px;">Hi <strong>${order.address.fullName}</strong>,</p>
           <p style="font-size: 15px; margin: 0;">Thank you for your order! Your order <span style="background: #fff; padding: 2px 6px; border-radius: 4px; font-weight: bold;">#${order.orderNumber}</span> has been confirmed and is now being processed.</p>
         </div>
@@ -85,14 +85,14 @@ export class MailService {
             </tr>
             <tr style="font-size: 18px; font-weight: bold;">
               <td style="padding: 15px 12px; text-align: right; border-top: 1px solid #e2e8f0;">Total Amount</td>
-              <td style="padding: 15px 12px; text-align: right; color: #157fb8; border-top: 1px solid #e2e8f0;">₹${order.total.toFixed(2)}</td>
+              <td style="padding: 15px 12px; text-align: right; color: #2D5143; border-top: 1px solid #e2e8f0;">₹${order.total.toFixed(2)}</td>
             </tr>
           </tfoot>
         </table>
 
         <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 25px;">
           <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px;">
-            <h3 style="color: #157fb8; margin: 0 0 10px 0; font-size: 16px; text-transform: uppercase;">Delivery Address</h3>
+            <h3 style="color: #2D5143; margin: 0 0 10px 0; font-size: 16px; text-transform: uppercase;">Delivery Address</h3>
             <p style="margin: 0; color: #475569; line-height: 1.6; font-size: 15px;">
               <strong>${order.address.fullName}</strong><br>
               ${order.address.address}, ${order.address.city}<br>
@@ -103,9 +103,9 @@ export class MailService {
         </div>
 
         <div style="text-align: center; color: #94a3b8; font-size: 13px; margin-top: 35px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
-          <p style="margin: 0 0 5px 0; font-weight: bold; color: #157fb8;">Thank you for choosing LEEWAA!</p>
-          <p style="margin: 0;">&copy; ${new Date().getFullYear()} Leewaa E-commerce. All rights reserved.</p>
-          <p style="margin: 5px 0 0 0;">For support: hello@leewaa.in | www.leewaa.in</p>
+          <p style="margin: 0 0 5px 0; font-weight: bold; color: #2D5143;">Thank you for choosing CHAKOLAS!</p>
+          <p style="margin: 0;">&copy; ${new Date().getFullYear()} Chakolas Ayurvedic Skincare. All rights reserved.</p>
+          <p style="margin: 5px 0 0 0;">For support: info@chakolas.in | www.chakolas.in</p>
         </div>
       </div>
     `;
@@ -120,17 +120,17 @@ export class MailService {
       ];
 
       // Add logo as CID attachment if it exists
-      const logoPath = path.join(process.cwd(), '..', 'storefront', 'public', 'images', 'Leewa_logo_web.png');
+      const logoPath = path.join(process.cwd(), '..', 'storefront', 'public', 'images', 'chakolas-logo-dark.png');
       if (fs.existsSync(logoPath)) {
         attachments.push({
-          filename: 'Leewa_logo_web.png',
+          filename: 'chakolas-logo-dark.png',
           path: logoPath,
-          cid: 'leewaa-logo',
+          cid: 'chakolas-logo',
         });
       }
 
       await this.transporter.sendMail({
-        from: `"Leewaa E-commerce" <${this.configService.get('SMTP_FROM')}>`,
+        from: `"Chakolas Ayurvedic Skincare" <${this.configService.get('SMTP_FROM')}>`,
         to,
         subject: `Order Confirmation - #${order.orderNumber}`,
         html,
@@ -157,7 +157,7 @@ export class MailService {
 
     const html = `
       <div style="font-family:Arial,sans-serif;max-width:580px;margin:0 auto;border:1px solid #e0e0e0;border-radius:10px;overflow:hidden;">
-        <div style="background:#157fb8;padding:20px 25px;">
+        <div style="background:#2D5143;padding:20px 25px;">
           <h2 style="color:#fff;margin:0;font-size:20px;">🛒 New Order Received!</h2>
           <p style="color:#cce9f9;margin:6px 0 0 0;font-size:13px;">Order #${order.orderNumber}</p>
         </div>
@@ -167,7 +167,7 @@ export class MailService {
             <tr><td style="color:#666;">Phone</td><td>${order.address?.phone || 'N/A'}</td></tr>
             <tr><td style="color:#666;">Email</td><td>${order.address?.email || order.user?.email || 'N/A'}</td></tr>
             <tr><td style="color:#666;">Payment</td><td><strong>${order.paymentMethod}</strong></td></tr>
-            <tr><td style="color:#666;">Total</td><td style="color:#157fb8;font-size:18px;font-weight:bold;">₹${Math.round(order.total).toLocaleString('en-IN')}</td></tr>
+            <tr><td style="color:#666;">Total</td><td style="color:#2D5143;font-size:18px;font-weight:bold;">₹${Math.round(order.total).toLocaleString('en-IN')}</td></tr>
           </table>
 
           <table style="width:100%;border-collapse:collapse;background:#f8fafc;border-radius:6px;overflow:hidden;">
@@ -179,18 +179,18 @@ export class MailService {
           </table>
 
           <div style="margin-top:20px;text-align:center;">
-            <a href="https://admin.leewaa.in/dashboard/orders" style="background:#157fb8;color:#fff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:bold;font-size:14px;">View Order in Admin</a>
+            <a href="https://admin.chakolas.in/dashboard/orders" style="background:#2D5143;color:#fff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:bold;font-size:14px;">View Order in Admin</a>
           </div>
         </div>
         <div style="background:#f1f5f9;padding:14px 25px;text-align:center;color:#94a3b8;font-size:12px;">
-          Leewaa E-commerce Notification Service
+          Chakolas Ayurvedic Notification Service
         </div>
       </div>
     `;
 
     try {
       await this.transporter.sendMail({
-        from: `"Leewaa Orders" <${this.configService.get('SMTP_FROM')}>`,
+        from: `"Chakolas Orders" <${this.configService.get('SMTP_FROM')}>`,
         to: adminEmail,
         subject: `🛒 New Order #${order.orderNumber} — ₹${Math.round(order.total).toLocaleString('en-IN')}`,
         html,

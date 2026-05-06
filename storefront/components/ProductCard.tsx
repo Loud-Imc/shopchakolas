@@ -115,7 +115,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
                     {/* Offer Badge - Vibrant & Attractive */}
                     {product.offerLabel && (
-                        <div className="absolute top-6 left-6 z-10">
+                        <div className="absolute top-6 left-6 z-10 flex flex-col gap-2">
                             <span className="bg-gradient-to-r from-orange-500 to-red-600 text-white px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_15px_30px_rgba(239,68,68,0.4)] animate-pulse-subtle">
                                 {product.offerLabel}
                             </span>
@@ -155,17 +155,22 @@ export default function ProductCard({ product }: { product: Product }) {
                     </h3>
 
                     <div className="mt-auto">
-                        <div className="flex items-center justify-center gap-4">
+                        <div className="flex items-center justify-center gap-3 flex-wrap">
                             <span className="text-4xl font-black text-primary tracking-tighter">
                                 {formatPrice(discountedPrice)}
                             </span>
                             {product.discount > 0 && (
-                                <span className="relative text-xl text-gray-500 font-bold px-1">
-                                    {formatPrice(product.price)}
-                                    <span className="absolute inset-0 flex items-center justify-center">
-                                        <span className="w-full h-[2px] bg-red-700 -rotate-3 transform shadow-sm opacity-80"></span>
+                                <>
+                                    <span className="relative text-lg text-gray-400 font-bold px-1">
+                                        {formatPrice(product.price)}
+                                        <span className="absolute inset-0 flex items-center justify-center">
+                                            <span className="w-full h-[1.5px] bg-red-700/60 -rotate-2 transform"></span>
+                                        </span>
                                     </span>
-                                </span>
+                                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider">
+                                        {Math.round(product.discount)}% OFF
+                                    </span>
+                                </>
                             )}
                         </div>
                     </div>

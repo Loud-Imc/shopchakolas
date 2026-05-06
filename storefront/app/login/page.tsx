@@ -39,11 +39,10 @@ export default function LoginPage() {
             <div className="max-w-md mx-auto bg-white rounded-[2.5rem] shadow-2xl p-10 border border-gray-50">
                 <div className="flex justify-center mb-8">
                     <Image
-                        src="/images/chakolas-logo.png"
+                        src="/images/chakolas-logo-dark.png"
                         alt="Chakolas Logo"
                         width={300}
                         height={80}
-                        className="brightness-0"
                     />
                 </div>
                 <h1 className="text-3xl font-black text-gray-900 mb-2 text-center tracking-tight">Welcome Back</h1>

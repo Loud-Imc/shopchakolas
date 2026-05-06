@@ -277,7 +277,7 @@ export default function DashboardPage() {
                                 <header className="bg-gradient-to-br from-primary to-primary-700 p-8 rounded-[2rem] text-white mb-10 overflow-hidden relative">
                                     <div className="relative z-10">
                                         <h2 className="text-3xl font-black mb-2">Invite Friends & Earn</h2>
-                                        <p className="text-primary-50 opacity-90 max-w-sm">Spread the word about pure water and get exclusive rewards for every friend who buys.</p>
+                                        <p className="text-primary-50 opacity-90 max-w-sm">Spread the word about Ayurvedic purity and get exclusive rewards for every friend who buys.</p>
                                     </div>
                                     <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
                                 </header>
@@ -287,11 +287,11 @@ export default function DashboardPage() {
                                         <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Your Invitation Code</p>
                                         <div className="flex gap-4">
                                             <div className="flex-1 bg-gray-50 border-2 border-dashed border-gray-200 p-4 rounded-2xl text-center font-black text-3xl text-gray-800 tracking-widest uppercase shadow-inner">
-                                                {displayUser?.referralCode || 'LEEWAA-REF'}
+                                                {displayUser?.referralCode || 'CHAKOLAS-REF'}
                                             </div>
                                             <button
                                                 onClick={() => {
-                                                    navigator.clipboard.writeText(displayUser?.referralCode || 'LEEWAA-REF');
+                                                    navigator.clipboard.writeText(displayUser?.referralCode || 'CHAKOLAS-REF');
                                                     alert('Copied to clipboard!');
                                                 }}
                                                 className="bg-primary p-4 rounded-2xl text-white hover:rotate-6 transition-all shadow-xl shadow-primary/20"

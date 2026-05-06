@@ -141,7 +141,7 @@ export default function CheckoutPage() {
                     key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
                     amount: order.total * 100,
                     currency: 'INR',
-                    name: 'Leewaa Ventures LLP',
+                    name: 'Chakolas Ayurvedic Skincare',
                     description: `Payment for Order ${order.orderNumber}`,
                     order_id: order.razorpayOrderId,
                     handler: async function (response: any) {
@@ -168,7 +168,7 @@ export default function CheckoutPage() {
                         contact: '',
                     },
                     theme: {
-                        color: '#157fb8',
+                        color: '#2D5143',
                     },
                     modal: {
                         ondismiss: async function () {

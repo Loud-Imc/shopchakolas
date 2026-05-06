@@ -5,9 +5,9 @@ import * as path from 'path';
 
 @Injectable()
 export class InvoicesService {
-    private readonly mainColor = '#157fb8';
+    private readonly mainColor = '#2D5143';
     private readonly bgColor = '#f9fafb';
-    private readonly logoPath = path.join(process.cwd(), '..', 'storefront', 'public', 'images', 'Leewa_logo_web.png');
+    private readonly logoPath = path.join(process.cwd(), '..', 'storefront', 'public', 'images', 'chakolas-logo-dark.png');
 
     async generateInvoiceBuffer(order: any): Promise<Buffer> {
         return new Promise((resolve, reject) => {
@@ -58,7 +58,7 @@ export class InvoicesService {
             .fillColor('#666666')
             .font('Helvetica')
             .fontSize(8)
-            .text('support@leewaa.in | www.leewaa.in', 50, 95);
+            .text('info@chakolas.in | www.chakolas.in', 50, 95);
 
         // Header
         doc
@@ -281,11 +281,11 @@ export class InvoicesService {
             .fillColor(this.mainColor)
             .font('Helvetica-Bold')
             .fontSize(10)
-            .text('Thank you for choosing LEEWAA!', 50, footerY, { align: 'center' })
+            .text('Thank you for choosing CHAKOLAS!', 50, footerY, { align: 'center' })
             .fillColor('#999999')
             .font('Helvetica')
             .fontSize(8)
-            .text('For support, contact us at hello@leewaa.in or visit www.leewaa.in', 50, footerY + 15, {
+            .text('For support, contact us at info@chakolas.in or visit www.chakolas.in', 50, footerY + 15, {
                 align: 'center',
             })
             .fillColor('#bbbbbb')

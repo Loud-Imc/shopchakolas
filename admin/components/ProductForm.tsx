@@ -28,6 +28,7 @@ export default function ProductForm({ id, initialData }: ProductFormProps) {
         position: '0',
         offerType: '',
         offerLabel: '',
+        endsAt: '',
     });
     const [displayImages, setDisplayImages] = useState<{ id: string; type: 'existing' | 'local'; url: string; file?: File }[]>([]);
     const [compressing, setCompressing] = useState(false);
@@ -48,6 +49,12 @@ export default function ProductForm({ id, initialData }: ProductFormProps) {
                 position: initialData.position?.toString() || '0',
                 offerType: initialData.offerType || '',
                 offerLabel: initialData.offerLabel || '',
+                endsAt: initialData.endsAt ? (() => {
+                    const date = new Date(initialData.endsAt);
+                    const offset = date.getTimezoneOffset();
+                    const localDate = new Date(date.getTime() - offset * 60 * 1000);
+                    return localDate.toISOString().slice(0, 16);
+                })() : '',
             });
 
             if (initialData.images) {
@@ -148,6 +155,11 @@ export default function ProductForm({ id, initialData }: ProductFormProps) {
         payload.append('position', formData.position);
         payload.append('offerType', formData.offerType);
         payload.append('offerLabel', formData.offerLabel);
+        if (formData.endsAt) {
+            payload.append('endsAt', new Date(formData.endsAt).toISOString());
+        } else {
+            payload.append('endsAt', '');
+        }
 
         // Create the image order and separate files
         const imageOrder: string[] = [];
@@ -279,6 +291,19 @@ export default function ProductForm({ id, initialData }: ProductFormProps) {
                         />
                         <p className="mt-1 text-[10px] text-gray-500">This will be shown on the product card badge.</p>
                     </div>
+
+                    <div className="md:col-span-2">
+                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            Offer End Date & Time (Countdown)
+                        </label>
+                        <input
+                            type="datetime-local"
+                            value={formData.endsAt}
+                            onChange={(e) => setFormData({ ...formData, endsAt: e.target.value })}
+                            className="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200 rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                        />
+                        <p className="mt-1 text-[10px] text-gray-500">Setting this will display a countdown timer at the top of the product card.</p>
+                    </div>
                 </div>
 
                 <div>
@@ -404,6 +429,12 @@ export default function ProductForm({ id, initialData }: ProductFormProps) {
                             />
                         </label>
                     </div>
+                    <p className="mt-3 text-xs text-amber-600 dark:text-amber-400 flex items-center gap-1.5 font-medium">
+                        <svg className="w-4 h-4 shrink-0 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        Note: Please upload square images (1:1 aspect ratio) for best display on the product cards. Other aspect ratios will be cropped automatically to fill the card.
+                    </p>
                 </div>
 
                 <div className="flex items-center gap-6 md:col-span-2 mt-4">

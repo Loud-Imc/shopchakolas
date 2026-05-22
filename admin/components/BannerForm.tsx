@@ -157,6 +157,7 @@ export default function BannerForm({ initialData, isEditing = false }: BannerFor
                         />
                     </div>
 
+
                     <div className="flex gap-6">
                         <div className="flex-1">
                             <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Display Position</label>

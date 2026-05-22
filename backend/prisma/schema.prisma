@@ -161,6 +161,7 @@ model Product {
   // Offers
   offerType       String?  // e.g., "1+1", "1+2"
   offerLabel      String?  // e.g., "Buy 1 Get 1 Free"
+  endsAt          DateTime?
   
   // SEO
   metaTitle       String?

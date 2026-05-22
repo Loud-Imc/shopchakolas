@@ -66,6 +66,13 @@ export class CreateProductDto {
     position?: number;
 
     @IsOptional()
+    @Transform(({ value }) => {
+        if (!value || value === 'null' || value === 'undefined' || value === '') return null;
+        return new Date(value);
+    })
+    endsAt?: Date;
+
+    @IsOptional()
     @IsArray()
     @IsString({ each: true })
     imageOrder?: string[];

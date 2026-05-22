@@ -38,18 +38,20 @@ export default function HeroSlider({ banners }: HeroSliderProps) {
     if (banners.length === 0) return null;
 
     return (
-        <section className="relative h-[50vh] min-h-[300px] w-full overflow-hidden group">
+        <section
+            className="relative h-[50vh] min-h-[300px] w-full overflow-hidden group"
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(true)}
+        >
             {/* Slides */}
             <div className="relative h-full w-full">
                 {banners.map((banner, index) => (
                     <div
                         key={banner.id}
-                        className={`absolute inset-0 transition-all duration-1000 ease-in-out transform ${index === current
-                            ? 'opacity-100 translate-x-0 z-10'
-                            : 'opacity-0 translate-x-full z-0'
+                        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === current
+                            ? 'opacity-100 z-10 pointer-events-auto'
+                            : 'opacity-0 z-0 pointer-events-none'
                             }`}
-                        onMouseEnter={() => setIsAutoPlaying(false)}
-                        onMouseLeave={() => setIsAutoPlaying(true)}
                     >
                         {/* Background Image */}
                         <Image

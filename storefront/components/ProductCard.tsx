@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,6 +22,7 @@ interface Product {
     isFeatured?: boolean;
     offerType?: string;
     offerLabel?: string;
+    endsAt?: string | null;
 }
 
 export default function ProductCard({ product }: { product: Product }) {
@@ -32,8 +33,48 @@ export default function ProductCard({ product }: { product: Product }) {
     const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
     const isInWishlist = wishlistItems.some(item => item.productId === product.id);
 
+    const [currentImgIndex, setCurrentImgIndex] = useState(0);
+    const [timeLeft, setTimeLeft] = useState<{ hours: number; minutes: number; seconds: number; hasTimer: boolean } | null>(null);
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+        if (!product.endsAt) return;
+
+        const calculateTimeLeft = () => {
+            const now = new Date();
+            const target = new Date(product.endsAt!);
+            const difference = target.getTime() - now.getTime();
+
+            if (difference <= 0) {
+                return { hours: 0, minutes: 0, seconds: 0, hasTimer: false };
+            }
+
+            const hours = Math.floor(difference / (1000 * 60 * 60));
+            const minutes = Math.floor((difference / 1000 / 60) % 60);
+            const seconds = Math.floor((difference / 1000) % 60);
+
+            return { hours, minutes, seconds, hasTimer: true };
+        };
+
+        const initial = calculateTimeLeft();
+        setTimeLeft(initial);
+
+        if (!initial.hasTimer) return;
+
+        const timer = setInterval(() => {
+            const current = calculateTimeLeft();
+            setTimeLeft(current);
+            if (!current.hasTimer) {
+                clearInterval(timer);
+            }
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, [product.endsAt]);
+
     const discountedPrice = calculateDiscountedPrice(product.price, product.discount);
-    const imageUrl = getImageUrl(product.images[0]);
+    const imageUrl = getImageUrl(product.images[currentImgIndex]);
     const isDataUrl = imageUrl?.startsWith('data:');
 
     const handleToggleWishlist = async (e: React.MouseEvent) => {
@@ -96,19 +137,36 @@ export default function ProductCard({ product }: { product: Product }) {
             >
                 {/* Image Section - Majestic Presentation */}
                 <div className="relative aspect-[1/1] rounded-[2rem] bg-[#f8f9f8] overflow-hidden group/image">
+                    {/* Countdown Timer Badge at top-right corner of the image */}
+                    {isMounted && timeLeft?.hasTimer && (
+                        <div className="absolute top-6 right-6 z-30 bg-black/75 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/10 flex items-center gap-2 shadow-[0_12px_24px_rgba(0,0,0,0.35)] select-none whitespace-nowrap">
+                            <span className="flex h-2 w-2 relative">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                            </span>
+                            <span className="text-[10px] font-black uppercase tracking-wider text-white">Ends:</span>
+                            <span className="font-mono text-[11px] font-black text-white flex gap-1 items-center">
+                                <span className="bg-white/10 px-1.5 py-0.5 rounded">{String(timeLeft.hours).padStart(2, '0')}h</span>
+                                <span className="text-white/40 animate-pulse">:</span>
+                                <span className="bg-white/10 px-1.5 py-0.5 rounded">{String(timeLeft.minutes).padStart(2, '0')}m</span>
+                                <span className="text-white/40 animate-pulse">:</span>
+                                <span className="bg-white/10 px-1.5 py-0.5 rounded">{String(timeLeft.seconds).padStart(2, '0')}s</span>
+                            </span>
+                        </div>
+                    )}
                     {isDataUrl ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
                             src={imageUrl}
                             alt={product.name}
-                            className="w-full h-full object-contain p-0 transform group-hover/card:scale-105 transition-transform duration-1000 ease-out"
+                            className="w-full h-full object-cover p-0 transform group-hover/card:scale-105 transition-transform duration-1000 ease-out"
                         />
                     ) : (
                         <Image
                             src={imageUrl}
                             alt={product.name}
                             fill
-                            className="object-contain p-0 transform group-hover/card:scale-105 transition-transform duration-1000 ease-out"
+                            className="object-cover p-0 transform group-hover/card:scale-105 transition-transform duration-1000 ease-out"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                     )}
@@ -120,6 +178,58 @@ export default function ProductCard({ product }: { product: Product }) {
                                 {product.offerLabel}
                             </span>
                         </div>
+                    )}
+
+                    {/* Carousel Navigation Controls */}
+                    {product.images.length > 1 && (
+                        <>
+                            {/* Left Navigation Arrow */}
+                            <button
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    setCurrentImgIndex((prev) => (prev === 0 ? product.images.length - 1 : prev - 1));
+                                }}
+                                className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2.5 rounded-full bg-white/70 hover:bg-white text-gray-800 border border-gray-200/50 shadow-md opacity-0 group-hover/image:opacity-100 transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center"
+                                aria-label="Previous image"
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+
+                            {/* Right Navigation Arrow */}
+                            <button
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    setCurrentImgIndex((prev) => (prev === product.images.length - 1 ? 0 : prev + 1));
+                                }}
+                                className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-2.5 rounded-full bg-white/70 hover:bg-white text-gray-800 border border-gray-200/50 shadow-md opacity-0 group-hover/image:opacity-100 transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center"
+                                aria-label="Next image"
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+
+                            {/* Carousel Indicators/Dots */}
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex gap-2 bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/5">
+                                {product.images.map((_, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            setCurrentImgIndex(idx);
+                                        }}
+                                        className="h-1.5 rounded-full transition-all duration-300 bg-white/40 hover:bg-white"
+                                        aria-label={`Go to image ${idx + 1}`}
+                                        style={{ width: idx === currentImgIndex ? '18px' : '6px', opacity: idx === currentImgIndex ? 1 : 0.4 }}
+                                    ></button>
+                                ))}
+                            </div>
+                        </>
                     )}
 
                     {/* Sophisticated Hover Overlay */}
